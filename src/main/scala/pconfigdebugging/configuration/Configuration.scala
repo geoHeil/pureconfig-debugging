@@ -23,8 +23,6 @@ case class DataSourceNoPartition(db: String, table: String)
     extends Db
     with DataSource
 
-final case class CsvFileDataSource(path: String, delimiter: String)
-
 sealed trait IntervalDataOutput {
   def intervalStart: Option[String]
 
@@ -40,14 +38,3 @@ case class Foo2(override val db: String,
     with IntervalDataOutput
     with DataSource
 
-case class DataOutput(override val db: String,
-                      override val table: String,
-                      numberRecordsPerPartition: Option[Int])
-    extends Db
-
-case class StatisticsTable(override val db: String,
-                           override val table: String,
-                           partitionColumn: String,
-                           partitionValue: Option[String],
-                           columns: Option[Seq[String]])
-    extends Db
